@@ -70,7 +70,7 @@ def antiSpam(client: Client, message: Message):
             qobuz.handle_url(link)
             for fil in absolutePaths("qobuzdown"):
                 if fil.lower().endswith(".jpg"): os.remove(fil)
-            editMessage(inme, f'⏫ Up to Telegram: {str(sira)} / {len(linkler)} ({len(list(absolutePaths("qobuzdown")))} File)')
+            editMessage(inme, f'⏫ Sedang Di Upload ke Telegram: {str(sira)} / {len(linkler)} ({len(list(absolutePaths("qobuzdown")))} File)')
             for fil in sorted(absolutePaths("qobuzdown")):
                 x:Message = sendMusic(inme, fil)
                 if Config.LOG_CHANNEL:
@@ -86,7 +86,7 @@ def antiSpam(client: Client, message: Message):
             sendMessage(message, helpstr + "\n\n" + str(e))
             continue
     sendMessage(inme, f"{message.from_user.mention}")
-    editMessage(inme, "✅ Upload Complete ")
+    editMessage(inme, "✅ Upload Selesai Silahkan Menikmati 🥳")
     try: shutil.rmtree("qobuzdown")
     except: pass
     os.remove("calisiyor.txt") if os.path.isfile("calisiyor.txt") else print("ok")
