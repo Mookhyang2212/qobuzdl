@@ -21,7 +21,7 @@ qobuz = QobuzDL(directory="qobuzdown",quality=Config.QOBUZ_QUAL,embed_art=True,s
 qobuz.get_tokens() # get 'app_id' and 'secrets' attrs
 qobuz.initialize_client(Config.QOBUZ_MAIL, Config.QOBUZ_PASS, qobuz.app_id, qobuz.secrets)
 
-@Client.on_message(filters.command(["start", "download"]))
+@Client.on_message(filters.command(["start", "qobuzdl"]))
 def antiSpam(client: Client, message: Message):
     if not AuthUserCheck(message): return
 
@@ -61,12 +61,12 @@ def antiSpam(client: Client, message: Message):
     if linkler.count == 0: return sendMessage(message, "Not Found Link.")
 
     sira = 0
-    inme = sendMessage(message, "✅ Download Complete")
+    inme = sendMessage(message, "✅ Download Selesai ")
 
     for link in linkler:
         sira = sira + 1
         try:
-            editMessage(inme, f"⏬ Downloading: {str(sira)} / {len(linkler)}")
+            editMessage(inme, f"⏬ Tunggu Sedang di Download: {str(sira)} / {len(linkler)}")
             qobuz.handle_url(link)
             for fil in absolutePaths("qobuzdown"):
                 if fil.lower().endswith(".jpg"): os.remove(fil)
