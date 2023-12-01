@@ -21,11 +21,11 @@ def get_media_info(path):
     try:
         artist = str(fields['tags']['artist'])
     except Exception:
-        artist = none
+        artist = None
     try:
         title = str(fields['tags']['title'])
     except Exception:
-        title = none
+        title = None
     LOGGER.info(f"ffprobe: duration: {duration} artist: {str(artist)} title: {str(title)}")
     return duration, artist, title
 
