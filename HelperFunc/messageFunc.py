@@ -52,13 +52,13 @@ def copyMessage(toReplyDocument, toCopyChatId = None, sendAsReply = False):
     except Exception as e:
         LOGGER.info(str(e))
 
-def sendDocument(toReplyDocument:Message, filePath):
+def sendMedia(toReplyDocument:Message, filePath):
     try:
         return toReplyDocument.reply_document(filePath)
     except FloodWait as e:
         time.sleep(e.value)
         LOGGER.info(str(e))
-        sendDocument(toReplyDocument)
+        sendMedia(toReplyDocument)
     except Exception as e:
         LOGGER.info(str(e))
 
@@ -67,7 +67,7 @@ def sendMusic(toReplyDocument:Message, filePath:str):
         cap = filePath.replace("/app/qobuzdown/", "", 1)
         cap = cap.replace("usr/src/app", "", 1)
         cap = cap.replace("usr/src", "", 1)
-        cap = cap.replace("/", "\n") + "\n#qobuz"
+        cap = cap.replace("/", "\n") + "\n@downloaderqobuzcok"
         duration , artist, title = get_media_info(filePath)
         return toReplyDocument.reply_audio(filePath,caption=cap,duration=duration,performer=artist,title=title)
     except FloodWait as e:
