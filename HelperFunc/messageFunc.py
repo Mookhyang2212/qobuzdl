@@ -52,7 +52,7 @@ def copyMessage(toReplyDocument, toCopyChatId = None, sendAsReply = False):
     except Exception as e:
         LOGGER.info(str(e))
 
-def sendFiles(toReplyFiles:Message, filePath):
+def sendDocument(toReplyDocument:Message, filePath):
     try:
         return toReplyFiles.reply_Files(filePath)
     except FloodWait as e:
