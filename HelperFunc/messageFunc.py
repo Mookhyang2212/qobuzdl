@@ -52,13 +52,13 @@ def copyMessage(toReplyDocument, toCopyChatId = None, sendAsReply = False):
     except Exception as e:
         LOGGER.info(str(e))
 
-def sendMedia(toReplyDocument:Message, filePath):
+def sendDocument(toReplyDocument:Message, filePath):
     try:
         return toReplyDocument.reply_document(filePath)
     except FloodWait as e:
         time.sleep(e.value)
         LOGGER.info(str(e))
-        sendMedia(toReplyDocument)
+        sendDocument(toReplyDocument)
     except Exception as e:
         LOGGER.info(str(e))
 
